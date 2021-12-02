@@ -43,6 +43,7 @@ logging:
   file:
     path: /Users/zhangyifan/develop/SpringBootDemo
 
+
 #分页插件配置
 pagehelper:
   helperDialect: mysql
