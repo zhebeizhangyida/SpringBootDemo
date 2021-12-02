@@ -1,1 +1,55 @@
+server:
+  port: 8080
 
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/spm3wh?characterEncoding=utf8&useUnicode=true&serverTimezone=GMT%2B8
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  #redis基本连接信息
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: root
+    database: 1
+
+  #默认缓存redis
+  cache:
+    type: redis
+
+  jackson:
+    #设置时间格式
+    date-format: yyyy-MM-dd HH:mm:ss
+    #设置时区
+    time-zone: GMT+8
+
+file:
+  #客户端请求头像的虚拟路径。（此处可以将“头像”改成任意需要直接获取的资源）
+  filePath: /file/**
+  #上传文件路径
+  uploadFolder: /Users/zhangyifan/develop/SpringBootDemo
+
+logging:
+  #打印执行的sql语句
+  level:
+    com:
+      wxwb:
+        jwaoswh:
+          common:
+            dao: debug
+  #生成日志文件的位置
+  file:
+    path: /Users/zhangyifan/develop/SpringBootDemo
+
+#分页插件配置
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #开启sql日志
