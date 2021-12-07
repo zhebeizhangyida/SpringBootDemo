@@ -1,5 +1,7 @@
 package com.zyf.util;
 
+import com.zyf.util.constant.CommonErrorEnum;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -31,15 +33,15 @@ public class CommonUtil {
     }
 
     /**
-     * 返回一个500状态码的json,并附带错误提示。
+     * 返回一个带有错误信息码的json
      *
-     * @param msg 错误提示
+     * @param errorEnum 错误信息类型
      * @return 返回result实体
      */
-    public static Result<Object> errorResult(String msg) {
+    public static Result<Object> errorResult(CommonErrorEnum errorEnum) {
         Result<Object> result = new Result<>();
-        result.setCode(500);
-        result.setMsg(msg);
+        result.setCode(errorEnum.getErrorCode());
+        result.setMsg(errorEnum.getErrorMsg());
         result.setTimestamp(sdf.format(new Date()));
         return result;
     }
