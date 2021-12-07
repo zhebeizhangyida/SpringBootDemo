@@ -7,6 +7,49 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
+    # 连接池配置
+    druid:
+      initial-size: 0
+      max-active: 8
+      min-idle: 0
+      max-wait: -1
+      not-full-timeout-retry-count: 0
+      validation-query: SELECT 1
+      validation-query-timeout: -1
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      time-between-eviction-runs-millis: 60000
+      time-between-connect-error-millis: 500
+      min-evictable-idle-time-millis: 1800000
+      max-evictable-idle-time-millis: 25200000
+      phy-timeout-millis: -1
+      pool-prepared-statements: false
+      share-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 10
+      use-global-data-source-stat: false
+      # 配置监控统计拦截的 Filter，去掉后监控界面 SQL 无法统计，wall 用于防火墙
+      filters: stat,wall,log4j2
+      # 通过 connection-properties 属性打开 mergeSql 功能；慢 SQL 记录
+      connection-properties: druid.stat.mergeSql\=true;druid.stat.slowSqlMillis\=5000
+      # 配置 DruidStatFilter
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: .js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*
+      # 配置 DruidStatViewServlet
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        # IP 白名单，没有配置或者为空，则允许所有访问
+        allow: 127.0.0.1
+        # IP 黑名单，若白名单也存在，则优先使用
+        deny: 127.0.0.1
+        # 禁用 HTML 中 Reset All 按钮
+        reset-enable: false
+        # 登录用户名/密码
+        login-username: admin
+        login-password: admin
 
   #redis基本连接信息
   redis:
