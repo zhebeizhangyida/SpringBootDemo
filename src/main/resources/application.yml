@@ -35,10 +35,8 @@ logging:
   #打印执行的sql语句
   level:
     com:
-      wxwb:
-        jwaoswh:
-          common:
-            dao: debug
+      zyf:
+        dao: debug
   #生成日志文件的位置
   file:
     path: /Users/zhangyifan/develop/SpringBootDemo
